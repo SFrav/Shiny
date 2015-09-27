@@ -1,5 +1,12 @@
 
 require(shiny)
+require(RCurl)
+require(xlsx)
+
+#require(gdata)
+url <- "http://www.happyplanetindex.org/assets/hpi-data.xlsx"
+if(!file.exists('hpi-data.xlsx')) {download.file(url, "hpi-data.xlsx", mode="wb") }
+HPI <- read.xlsx("hpi-data.xlsx", sheetName ="Complete HPI Dataset", startRow = 6)
 
 shinyUI(navbarPage(
   title="Happy Planet Index: mapped in Google Geovis",
